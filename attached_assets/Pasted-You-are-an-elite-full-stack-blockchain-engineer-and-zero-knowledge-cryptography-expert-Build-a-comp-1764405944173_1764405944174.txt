@@ -1,0 +1,55 @@
+You are an elite full-stack blockchain engineer and zero-knowledge cryptography expert. Build a complete, production-ready prototype for the following project exactly as described:
+
+**Project Name:** Midnight + Cardano Zero-Knowledge Age Verification System (AVT — "verify once, use everywhere" privacy-preserving adult proof)
+
+**Core Goal:** Allow any user to prove they are 18+ (or 21+) to any website or dApp without ever revealing name, exact birthdate, or any PII, using only zero-knowledge proofs and a reusable, non-transferable Age Verification Token (AVT) minted on Cardano.
+
+**Exact Architecture & Tech Stack (must be followed precisely):**
+
+Frontend:
+- React 18 + TypeScript + Vite
+- Tailwind CSS for styling
+- Lucide icons
+- Wallet connection via standard Cardano wallets (Nami, Eternl, Typhon, Lace, Flint)
+
+Backend (Node.js):
+- Express.js + TypeScript
+- Midnight SDK[](https://developers.midnight.network) for ZK proof generation
+- Cardano wallet integration using Lucid or MeshJS
+- No database at all — zero personal data stored
+
+Zero-Knowledge Layer:
+- Use Midnight’s Compact language to create a private smart contract that takes a user’s birthdate (as a private input) and a public threshold (e.g., current date - 18 years) and outputs only a boolean "isAdult" without revealing the birthdate
+- Generate a ZK proof on-chain using Midnight that certifies the user is adult
+
+Public Blockchain Layer (Cardano mainnet/preprod):
+- After successful ZK verification on Midnight, mint a soulbound (non-transferable) NFT called "Age Verification Token (AVT)" on Cardano using Plutus or MeshJS/Lucid
+- Policy script must lock the NFT so it can never be transferred (soulbound)
+- Metadata: { "standard": "CIP-68", "name": "Age Verified ≥18", "verified_with": "Midnight ZK" }
+
+User Flow (exact steps):
+1. User connects Cardano wallet
+2. User uploads government-issued ID → scanned via third-party KYC provider (e.g., Onfido, Persona, or Sumsub) in a separate iframe → returns only the extracted birthdate (no name/photo stored)
+3. Birthdate is immediately fed as private input into the Midnight Compact circuit
+4. Midnight generates ZK proof that user ≥ 18 without revealing birthdate
+5. Backend submits proof to Midnight network → gets verification result
+6. If true → backend mints soulbound AVT NFT to user’s wallet on Cardano
+7. User can now click “Prove I’m 18+” on any partner site → site checks for presence of AVT NFT via Blockfrost or Koios API → instantly grants access (no further upload needed)
+
+Deliverables you must generate in full working code:
+1. Complete monorepo structure (frontend + backend folders)
+2. Full Midnight Compact circuit for age verification (with comments)
+3. Working Express backend with routes:
+   - POST /start-verification (returns KYC iframe URL)
+   - POST /kyc-callback (receives birthdate, triggers ZK proof)
+   - GET /status/:sessionId
+   - POST /mint-avt (mints soulbound NFT)
+3. Full React frontend with beautiful UI for the entire flow
+4. Cardano soulbound policy script (Plutus or Aiken or plutarch)
+5. .env.example with all required keys (Midnight, Blockfrost, etc.)
+6. README.md with exact setup and run instructions
+7. Make it deployable to run locally and on testnet/preprod
+
+Make everything clean, well-commented, production-grade, and actually runnable. Use the latest 2025 versions of all libraries. Do not use placeholders — generate complete, working code.
+
+Start now and output the entire project.
