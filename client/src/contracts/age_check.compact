@@ -1,0 +1,44 @@
+// Midnight Compact Circuit - Age Verification
+// This circuit proves a user is above a certain age threshold without revealing their birthdate.
+
+export circuit AgeCheck {
+    // Public Inputs
+    // The current date in YYYYMMDD format (e.g., 20231025)
+    public current_date: Field;
+    
+    // The age threshold required (e.g., 18)
+    public threshold: Field;
+
+    // Private Inputs (Witness)
+    // The user's actual birthdate in YYYYMMDD format (e.g., 20000101)
+    // This remains hidden on the user's device and is never revealed to the verifier.
+    private birth_date: Field;
+
+    // Output
+    // Returns true if the user is older than the threshold, false otherwise.
+    output is_adult: boolean;
+
+    // Verification Logic
+    evaluate() {
+        // 1. Sanity Check: Ensure birthdate is a positive integer
+        assert(birth_date > 0);
+
+        // 2. Sanity Check: Ensure birthdate is in the past (smaller than current date)
+        assert(current_date > birth_date);
+
+        // 3. Calculate Age Logic
+        // In YYYYMMDD format, subtracting dates gives an approximation.
+        // Example: 20231025 - 20000101 = 230924 (23 years, 09 months, 24 days)
+        // The threshold of 18 years would be represented as 180000.
+        
+        // NOTE: In a production Compact circuit, we would use precise timestamp arithmetic.
+        // This is a simplified logic for the prototype.
+        
+        const age_diff = current_date - birth_date;
+        const required_gap = threshold * 10000; // 18 -> 180000
+
+        // 4. Verify Condition
+        // If the difference is greater than or equal to the required gap, the user is an adult.
+        is_adult = age_diff >= required_gap;
+    }
+}

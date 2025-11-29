@@ -1,0 +1,31 @@
+// Aiken Policy Script for Soulbound AVT (Age Verification Token)
+
+use aiken/transaction.{ScriptContext, Mint, Transaction}
+use aiken/list
+
+validator {
+  fn policy(_redeemer: Void, ctx: ScriptContext) -> Bool {
+    when ctx.purpose is {
+      Mint(_policy_id) -> {
+        // Soulbound Logic:
+        // The token is non-transferable. 
+        // In a real implementation, we would enforce that the token 
+        // can only be minted to a specific address and never moved.
+        // This is typically done by checking that the transaction 
+        // does not contain any outputs sending this asset to a different address
+        // than the owner, or by requiring an "Issuer" signature for every move (which they would deny).
+        
+        // For this prototype, we simulate the check:
+        // 1. Must be signed by the "Midnight Verifier" authority key.
+        let tx = ctx.transaction
+        let required_signers = tx.extra_signatories
+        
+        // Mock Issuer Key Hash (Midnight Backend)
+        let issuer_key_hash = #"a2c20c77887ace1cd986193e4e75babd8993cfd56995cd5cfce609c2"
+
+        list.has(required_signers, issuer_key_hash)
+      }
+      _ -> False
+    }
+  }
+}
