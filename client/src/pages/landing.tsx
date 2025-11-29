@@ -63,9 +63,6 @@ export default function Landing() {
               Connect Wallet to Start
             </Button>
           )}
-          <Button size="lg" variant="outline" className="h-14 px-8 text-lg border-white/10 hover:bg-white/5">
-            Read the Whitepaper
-          </Button>
         </motion.div>
       </motion.div>
 
