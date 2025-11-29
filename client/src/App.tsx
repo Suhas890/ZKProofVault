@@ -7,7 +7,6 @@ import NotFound from "@/pages/not-found";
 import Landing from "@/pages/landing";
 import KYCProcess from "@/pages/kyc";
 import Dashboard from "@/pages/dashboard";
-import Playground from "@/pages/playground";
 import Layout from "@/components/layout";
 
 function Router() {
@@ -17,7 +16,6 @@ function Router() {
         <Route path="/" component={Landing} />
         <Route path="/verify" component={KYCProcess} />
         <Route path="/dashboard" component={Dashboard} />
-        <Route path="/playground" component={Playground} />
         <Route component={NotFound} />
       </Switch>
     </Layout>
