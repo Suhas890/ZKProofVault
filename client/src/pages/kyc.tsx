@@ -4,6 +4,7 @@ import { useLocation, Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { QRCodeSVG } from "qrcode.react";
 import { 
   Upload, 
   FileCheck, 
@@ -225,12 +226,23 @@ export default function KYCProcess() {
               Your Age Verification Token has been minted and is now in your wallet.
             </p>
 
-            <div className="bg-white/5 p-4 rounded-lg mb-8 border border-white/10 text-left">
-              <div className="text-xs text-muted-foreground mb-1">Token ID</div>
-              <div className="font-mono text-sm truncate text-primary">asset1...8j290s9j20s</div>
-              <div className="text-xs text-muted-foreground mt-3 mb-1">Status</div>
-              <div className="text-green-400 text-sm font-bold flex items-center gap-2">
-                <Shield className="w-3 h-3" /> Verified Adult (18+)
+            <div className="bg-white/5 p-6 rounded-lg mb-8 border border-white/10 text-left flex items-center gap-6">
+              <div className="bg-white p-2 rounded-lg shrink-0">
+                <QRCodeSVG 
+                  value="asset1...8j290s9j20s" 
+                  size={80}
+                  level="M"
+                  fgColor="#000000"
+                  bgColor="#FFFFFF"
+                />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-xs text-muted-foreground mb-1">Token ID</div>
+                <div className="font-mono text-sm truncate text-primary mb-3">asset1...8j290s9j20s</div>
+                <div className="text-xs text-muted-foreground mb-1">Status</div>
+                <div className="text-green-400 text-sm font-bold flex items-center gap-2">
+                  <Shield className="w-3 h-3" /> Verified Adult (18+)
+                </div>
               </div>
             </div>
 

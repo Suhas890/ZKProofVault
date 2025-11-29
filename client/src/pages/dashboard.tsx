@@ -2,6 +2,7 @@ import { useAppStore } from "@/lib/store";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { QRCodeSVG } from "qrcode.react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   ShieldCheck, 
@@ -12,7 +13,8 @@ import {
   CheckCircle2,
   XCircle,
   RefreshCw,
-  Loader2
+  Loader2,
+  QrCode
 } from "lucide-react";
 import { Link } from "wouter";
 import { useState } from "react";
@@ -80,23 +82,36 @@ export default function Dashboard() {
           <CardContent className="space-y-6 relative z-10">
             {avtStatus === 'minted' ? (
               <>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="p-4 rounded-lg bg-black/20 border border-white/5">
-                    <div className="text-xs text-muted-foreground mb-1">Verification Type</div>
-                    <div className="font-medium">Age 18+ Check</div>
-                  </div>
-                  <div className="p-4 rounded-lg bg-black/20 border border-white/5">
-                    <div className="text-xs text-muted-foreground mb-1">Privacy Level</div>
-                    <div className="font-medium text-accent">Zero-Knowledge</div>
-                  </div>
-                  <div className="p-4 rounded-lg bg-black/20 border border-white/5">
-                    <div className="text-xs text-muted-foreground mb-1">Issued Date</div>
-                    <div className="font-medium">Today</div>
-                  </div>
-                  <div className="p-4 rounded-lg bg-black/20 border border-white/5">
-                    <div className="text-xs text-muted-foreground mb-1">Issuer</div>
-                    <div className="font-medium">Midnight Network</div>
-                  </div>
+                <div className="flex flex-col md:flex-row gap-6">
+                   <div className="shrink-0 flex flex-col items-center justify-center p-4 bg-white rounded-xl w-fit h-fit mx-auto md:mx-0">
+                      <QRCodeSVG 
+                        value="asset1...8j290s9j20s" 
+                        size={120}
+                        level="H"
+                      />
+                      <div className="text-[10px] text-black font-mono mt-2 font-bold flex items-center gap-1">
+                        <QrCode className="w-3 h-3" /> SCAN TO VERIFY
+                      </div>
+                   </div>
+                   
+                   <div className="grid grid-cols-2 gap-4 w-full">
+                      <div className="p-4 rounded-lg bg-black/20 border border-white/5">
+                        <div className="text-xs text-muted-foreground mb-1">Verification Type</div>
+                        <div className="font-medium">Age 18+ Check</div>
+                      </div>
+                      <div className="p-4 rounded-lg bg-black/20 border border-white/5">
+                        <div className="text-xs text-muted-foreground mb-1">Privacy Level</div>
+                        <div className="font-medium text-accent">Zero-Knowledge</div>
+                      </div>
+                      <div className="p-4 rounded-lg bg-black/20 border border-white/5">
+                        <div className="text-xs text-muted-foreground mb-1">Issued Date</div>
+                        <div className="font-medium">Today</div>
+                      </div>
+                      <div className="p-4 rounded-lg bg-black/20 border border-white/5">
+                        <div className="text-xs text-muted-foreground mb-1">Issuer</div>
+                        <div className="font-medium">Midnight Network</div>
+                      </div>
+                   </div>
                 </div>
 
                 <div className="bg-code-bg p-4 rounded-lg font-mono text-xs text-muted-foreground break-all border border-white/5">
