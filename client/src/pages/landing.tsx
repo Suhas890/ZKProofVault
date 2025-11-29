@@ -1,8 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { useAppStore } from "@/lib/store";
 import { Link } from "wouter";
-import { ArrowRight, Shield, Lock, Zap, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Shield, Lock, Zap, CheckCircle2, HelpCircle, Wallet } from "lucide-react";
 import { motion } from "framer-motion";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 
 export default function Landing() {
   const { isWalletConnected, connectWallet } = useAppStore();
@@ -51,7 +56,7 @@ export default function Landing() {
           Prove you are 18+ without ever revealing your birthdate or identity.
         </motion.p>
 
-        <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+        <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 justify-center pt-4 items-center">
           {isWalletConnected ? (
             <Link href="/verify">
               <Button size="lg" className="h-14 px-8 text-lg bg-primary hover:bg-primary/90 shadow-xl shadow-primary/20 transition-all hover:scale-105">
@@ -59,9 +64,36 @@ export default function Landing() {
               </Button>
             </Link>
           ) : (
-            <Button size="lg" onClick={() => connectWallet()} className="h-14 px-8 text-lg bg-white text-black hover:bg-gray-200 shadow-xl transition-all hover:scale-105">
-              Connect Wallet to Start
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button size="lg" onClick={() => connectWallet()} className="h-14 px-8 text-lg bg-white text-black hover:bg-gray-200 shadow-xl transition-all hover:scale-105">
+                Connect Wallet to Start
+              </Button>
+              
+              <HoverCard>
+                <HoverCardTrigger asChild>
+                  <Button variant="ghost" size="icon" className="rounded-full h-10 w-10 text-muted-foreground hover:text-white">
+                    <HelpCircle className="w-6 h-6" />
+                  </Button>
+                </HoverCardTrigger>
+                <HoverCardContent className="w-80 bg-card border-white/10 backdrop-blur-xl">
+                  <div className="flex justify-between space-x-4">
+                    <div className="space-y-1">
+                      <h4 className="text-sm font-semibold flex items-center gap-2">
+                        <Wallet className="w-4 h-4 text-primary" /> What is this?
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        Connecting your wallet allows you to:
+                      </p>
+                      <ul className="text-xs text-muted-foreground list-disc pl-4 mt-2 space-y-1">
+                        <li>Create a secure, private account without a password</li>
+                        <li>Receive your Age Verification Token (AVT)</li>
+                        <li>Prove your age to apps without sharing data</li>
+                      </ul>
+                    </div>
+                  </div>
+                </HoverCardContent>
+              </HoverCard>
+            </div>
           )}
           <Button size="lg" variant="outline" className="h-14 px-8 text-lg border-white/10 hover:bg-white/5">
             Read the Whitepaper
