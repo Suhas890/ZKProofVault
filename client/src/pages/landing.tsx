@@ -95,9 +95,11 @@ export default function Landing() {
               </HoverCard>
             </div>
           )}
-          <Button size="lg" variant="outline" className="h-14 px-8 text-lg border-white/10 hover:bg-white/5">
-            Read the Whitepaper
-          </Button>
+          <Link href="/playground">
+            <Button size="lg" variant="outline" className="h-14 px-8 text-lg border-white/10 hover:bg-white/5">
+              Try Demo (No Wallet)
+            </Button>
+          </Link>
         </motion.div>
       </motion.div>
 
