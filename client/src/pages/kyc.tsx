@@ -118,9 +118,14 @@ export default function KYCProcess() {
                 </div>
                 <Progress value={uploadProgress} className="h-2" />
                 {kycStatus === 'scanning' && (
-                  <div className="flex items-center justify-center gap-2 text-xs text-primary animate-pulse mt-4">
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    Extracting birthdate via OCR...
+                  <div className="flex flex-col items-center justify-center gap-2 text-xs text-primary mt-4">
+                    <div className="flex items-center gap-2 animate-pulse">
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Running Tesseract OCR...
+                    </div>
+                    <p className="text-muted-foreground text-[10px]">
+                      Analyzing document text to find birthdate pattern (DD-MM-YYYY or similar)...
+                    </p>
                   </div>
                 )}
               </div>
