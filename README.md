@@ -37,9 +37,8 @@ Install Dependencies: Run the following command to install all required project 
 
 Bash
 
-npm install
-# or yarn install
-# or pnpm install
+npm install or yarn install or pnpm install
+
 4. Configuration
 Create Environment File: In the root directory of your project, create a new file named .env.development.
 
