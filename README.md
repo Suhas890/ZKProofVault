@@ -47,13 +47,13 @@ Populate .env.development: Add the following content to this file. The DATABASE_
 
 Code snippet
 
-# --- BACKEND (EXPRESS/NODE) CONFIGURATION ---
-# Database is not in use for the prototype, but these placeholders are required.
+ --- BACKEND (EXPRESS/NODE) CONFIGURATION ---
+ Database is not in use for the prototype, but these placeholders are required.
 DATABASE_URL=""
 SESSION_SECRET="a_random_placeholder_secret_key"
 
-# --- FRONTEND (VITE/REACT) CONFIGURATION ---
-# This is the CRITICAL line that connects the React client to the Express backend.
+ --- FRONTEND (VITE/REACT) CONFIGURATION ---
+ This is the CRITICAL line that connects the React client to the Express backend.
 VITE_API_URL="http://localhost:8080"
 The VITE_API_URL ensures the frontend can communicate with the backend's API.
 
