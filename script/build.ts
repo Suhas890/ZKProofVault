@@ -5,6 +5,9 @@ import { rm, readFile } from "fs/promises";
 // server deps to bundle to reduce openat(2) syscalls
 // which helps cold start times
 const allowlist = [
+  // FIX: Added @hookform/resolvers. It is a client dependency, but it should be bundled
+  // to prevent potential issues with the build process's dependency exclusion logic.
+  "@hookform/resolvers", 
   "@google/generative-ai",
   "@neondatabase/serverless",
   "axios",

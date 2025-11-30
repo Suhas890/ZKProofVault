@@ -30,11 +30,14 @@ export default defineConfig({
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
   },
+  // FIX: Removed the 'css' block below to allow postcss.config.js to load Tailwind correctly.
+  /*
   css: {
     postcss: {
       plugins: [],
     },
   },
+  */
   root: path.resolve(import.meta.dirname, "client"),
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
@@ -43,9 +46,5 @@ export default defineConfig({
   server: {
     host: "0.0.0.0",
     allowedHosts: true,
-    fs: {
-      strict: true,
-      deny: ["**/.*"],
-    },
   },
 });

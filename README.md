@@ -1,0 +1,12 @@
+REST-Express Full-Stack ApplicationThis is a full-stack application featuring a modern development stack:Backend: Node.js with Express and TypeScript.Frontend: React (via Vite), TypeScript, and Tailwind CSS (using shadcn/ui components).State Management/Data Fetching: Zustand and React Query.Styling: Tailwind CSS with PostCSS.Database: Configured for PostgreSQL/Drizzle, but currently uses an in-memory storage (MemStorage) for the prototype.🚀 Setup GuideFollow these steps to get the application running on your local machine.PrerequisitesBefore starting, ensure you have the following installed:Node.js (v20 or newer)npm (Node Package Manager)InstallationClone the Repository (or download the files).Install Dependencies: Open your terminal in the project's root directory and run the installation command:Bashnpm install
+ConfigurationCreate an environment configuration file in the project root named .env.development and populate it with the required environment variables:Code snippet# --- BACKEND (EXPRESS/NODE) CONFIGURATION ---
+# Database is not in use, but these placeholders satisfy the environment variables
+# required by existing libraries (Drizzle/Express-Session) to prevent crashing.
+DATABASE_URL=""
+SESSION_SECRET="a_random_placeholder_secret_key"
+
+# --- FRONTEND (VITE/REACT) CONFIGURATION ---
+# This is the CRITICAL line that links the frontend to the backend API.
+VITE_API_URL="http://localhost:8080"
+▶️ Running LocallyThe project is configured to start the Express backend and the Vite frontend development server simultaneously using a single command.Start Development Server: Run the following script in your terminal:Bashnpm run dev
+Access the App: Open your web browser and navigate to the application URL:http://localhost:8080Available ScriptsCommandDescriptionnpm run devStarts the full development stack (Express backend and Vite/React frontend).npm run buildCompiles the frontend and backend code for production into the dist directory.npm startRuns the compiled application from the dist directory in production mode.npm run checkExecutes TypeScript type checking across the project.npm run db:pushExecutes a database schema push using Drizzle Kit (requires a live PostgreSQL database via a valid DATABASE_URL).
